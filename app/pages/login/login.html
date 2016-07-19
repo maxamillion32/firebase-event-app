@@ -27,8 +27,16 @@
 
   </form>
 
-    <button block (click)="loginUserTwitter()">
+    <button block (click)="loginUserSocial($event, 'twitter')">
       Login with Twitter
+    </button>
+
+    <button block (click)="loginUserSocial($event, 'facebook')">
+      Login with Facebook
+    </button>
+
+    <button block (click)="loginUserSocial($event, 'google')">
+      Login with Google
     </button>
 
     <button block clear (click)="goToSignup()">

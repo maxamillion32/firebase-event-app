@@ -29,6 +29,31 @@ export class AuthData {
     });
   }
 
+  loginUserSocial(provider) {
+    var authProvider;
+    switch(provider) {
+      case "twitter" :
+        authProvider = new firebase.auth.TwitterAuthProvider();
+        break;
+      case "facebook" :
+        authProvider = new firebase.auth.FacebookAuthProvider();
+        break;
+      case "google" :
+        authProvider = new firebase.auth.GoogleAuthProvider();
+        break;
+    }
+    console.log("shit");
+    return this.fireAuth.signInWithRedirect(authProvider).then((authData) => {
+      this.nav.setRoot(HomePage);
+    }, (error) => {
+        let prompt = Alert.create({
+          message: error.message,
+          buttons: [{text: "Ok"}]
+        });
+        this.nav.present(prompt);
+    });
+  }
+
   signupUser(email: string, password: string): any {
     return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
       this.fireAuth.signInWithEmailAndPassword(email, password).then((authenticatedUser) => {
