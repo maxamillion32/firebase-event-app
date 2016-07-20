@@ -19,7 +19,7 @@ export class AuthData {
 
   loginUser(email: string, password: string): any {
     return this.fireAuth.signInWithEmailAndPassword(email, password).then((authData) => {
-      var user = firebase.auth().currentUser;
+      var user = this.fireAuth.currentUser;
       this.updateUser(user);
       this.nav.setRoot(HomePage);
     }, (error) => {
@@ -47,7 +47,7 @@ export class AuthData {
     }
     console.log("shit");
     return this.fireAuth.signInWithPopup(authProvider).then((authData) => {
-      var user = firebase.auth().currentUser;
+      var user = this.fireAuth.currentUser;
       this.updateUser(user);
       this.nav.setRoot(HomePage);
     }, (error) => {
