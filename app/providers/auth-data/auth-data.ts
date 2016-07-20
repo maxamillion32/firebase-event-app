@@ -7,19 +7,19 @@ import * as firebase from 'firebase';
 @Injectable()
 export class AuthData {
   public fireAuth: any;
-  public userProfile: any;
+  public users: any;
   local: Storage;
 
   constructor(public nav: NavController) {
 
     this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('/userProfile');
+    this.users = firebase.database().ref('/users');
 
   }
 
   loginUser(email: string, password: string): any {
     return this.fireAuth.signInWithEmailAndPassword(email, password).then((authData) => {
-      var user = firebase.auth().currentUser;      
+      var user = firebase.auth().currentUser;
       this.updateUser(user);
       this.nav.setRoot(HomePage);
     }, (error) => {
@@ -62,7 +62,7 @@ export class AuthData {
   signupUser(email: string, password: string): any {
     return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
       this.fireAuth.signInWithEmailAndPassword(email, password).then((authenticatedUser) => {
-        this.userProfile.child(authenticatedUser.uid).set({
+        this.users.child(authenticatedUser.uid).set({
           email: email
         }).then(() => {
           this.nav.setRoot(HomePage);
@@ -117,6 +117,14 @@ export class AuthData {
       refreshToken: user.refreshToken,
       lastLogin: new Date().toUTCString()
     });
+  }
+
+  getUserProfile() {
+    return new Promise((resolve, reject) => {
+      firebase.database().ref('users/' + this.fireAuth.currentUser.uid).once('value', snapshot => {
+          resolve(snapshot.val());
+      })
+    })
   }
 
   logoutUser(): any {

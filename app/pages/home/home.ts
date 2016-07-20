@@ -8,8 +8,19 @@ import {LoginPage} from '../login/login';
   providers: [AuthData]
 })
 export class HomePage {
+
+  user;
+
   constructor(public nav: NavController, public authData: AuthData) {
 
+  }
+
+  ngAfterViewInit() {
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
+    this.user = this.authData.getUserProfile();
   }
 
   logOut(){
