@@ -43,7 +43,7 @@ export class AuthData {
         break;
     }
     console.log("shit");
-    return this.fireAuth.signInWithRedirect(authProvider).then((authData) => {
+    return this.fireAuth.signInWithPopup(authProvider).then((authData) => {
       this.nav.setRoot(HomePage);
     }, (error) => {
         let prompt = Alert.create({

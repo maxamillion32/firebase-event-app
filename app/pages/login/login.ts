@@ -46,25 +46,7 @@ export class LoginPage {
     });
     this.nav.present(loading);
   }
-
-  loginUserFacebook(event) {
-    event.preventDefault();
-    this.authData.loginUserFacebook();
-    let loading = Loading.create({
-      dismissOnPageChange: true,
-    });
-    this.nav.present(loading);
-  }
-
-  loginUserGoogle(event) {
-    event.preventDefault();
-    this.authData.loginUserGoogle();
-    let loading = Loading.create({
-      dismissOnPageChange: true,
-    });
-    this.nav.present(loading);
-  }
-
+  
   goToSignup(){
     this.nav.push(SignupPage);
   }
