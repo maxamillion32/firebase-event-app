@@ -19,8 +19,7 @@ export class AuthData {
 
   loginUser(email: string, password: string): any {
     return this.fireAuth.signInWithEmailAndPassword(email, password).then((authData) => {
-      var user = this.fireAuth.currentUser;
-      this.updateUser(user);
+      this.updateUser(this.fireAuth.currentUser);
       this.nav.setRoot(HomePage);
     }, (error) => {
         let prompt = Alert.create({
@@ -47,8 +46,7 @@ export class AuthData {
     }
     console.log("shit");
     return this.fireAuth.signInWithPopup(authProvider).then((authData) => {
-      var user = this.fireAuth.currentUser;
-      this.updateUser(user);
+      this.updateUser(this.fireAuth.currentUser);
       this.nav.setRoot(HomePage);
     }, (error) => {
         let prompt = Alert.create({
@@ -110,21 +108,12 @@ export class AuthData {
   }
 
   updateUser(user) {
-    firebase.database().ref('users/' + user.uid).set({
-      email: user.email,
+    firebase.database().ref('users/' + user.uid).update({
       displayName: user.displayName,
       photoUrl: user.photoURL,
       refreshToken: user.refreshToken,
       lastLogin: new Date().toUTCString()
     });
-  }
-
-  getUserProfile() {
-    return new Promise((resolve, reject) => {
-      firebase.database().ref('users/' + this.fireAuth.currentUser.uid).once('value', snapshot => {
-          resolve(snapshot.val());
-      })
-    })
   }
 
   logoutUser(): any {
