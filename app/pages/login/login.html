@@ -27,16 +27,16 @@
 
   </form>
 
-    <button block (click)="loginUserSocial($event, 'twitter')">
-      Login with Twitter
+    <button block class="button-twitter" (click)="loginUserSocial($event, 'twitter')">
+      <ion-icon name="logo-twitter"></ion-icon>Login with Twitter
     </button>
 
-    <button block (click)="loginUserSocial($event, 'facebook')">
-      Login with Facebook
+    <button block class="button-facebook" (click)="loginUserSocial($event, 'facebook')">
+      <ion-icon name="logo-facebook"></ion-icon>Login with Facebook
     </button>
 
-    <button block (click)="loginUserSocial($event, 'google')">
-      Login with Google
+    <button block class="button-google" (click)="loginUserSocial($event, 'google')">
+      <ion-icon name="logo-google"></ion-icon>Login with Google
     </button>
 
     <button block clear (click)="goToSignup()">
