@@ -15,14 +15,6 @@ export class HomePage {
 
   }
 
-  ngAfterViewInit() {
-    this.getUserProfile();
-  }
-
-  getUserProfile() {
-    this.user = this.authData.getUserProfile();
-  }
-
   logOut(){
     this.authData.logoutUser().then(() => {
       this.nav.rootNav.setRoot(LoginPage);
