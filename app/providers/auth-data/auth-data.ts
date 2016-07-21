@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {NavController, Alert} from 'ionic-angular';
+import {NavController, Alert, Storage, LocalStorage} from 'ionic-angular';
 import {HomePage} from '../../pages/home/home';
 import {LoginPage} from '../../pages/login/login';
 import * as firebase from 'firebase';
@@ -9,6 +9,7 @@ export class AuthData {
   public fireAuth: any;
   public users: any;
   local: Storage;
+  public user: any;
 
   constructor(public nav: NavController) {
 
@@ -30,9 +31,9 @@ export class AuthData {
     });
   }
 
-  loginUserSocial(provider) {
+  loginUserSocial(providerName) {
     var authProvider;
-    switch(provider) {
+    switch(providerName) {
       case "twitter" :
         authProvider = new firebase.auth.TwitterAuthProvider();
 

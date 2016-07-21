@@ -9,10 +9,24 @@ import {LoginPage} from '../login/login';
 })
 export class HomePage {
 
-  user;
+  email;
+  uid;
 
   constructor(public nav: NavController, public authData: AuthData) {
 
+  }
+
+  ngAfterViewInit() {
+    this.authData.fireAuth.onAuthStateChanged((user) => {
+      if (user) {
+        // If there's a user take him to the home page.
+        this.email = user.email;
+        this.uid = user.uid;
+      } else {
+        // If there's no user logged in send him to the LoginPage
+        this.email = "Test";
+      }
+    });
   }
 
   logOut(){
