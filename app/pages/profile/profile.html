@@ -32,9 +32,22 @@
     </ion-item>
 
     <ion-item>
-      <ion-label class="dob-label">Date of Birth</ion-label>
-      <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY"
-        [(ngModel)]="birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Date of Birth
+          </ion-col>
+          <ion-col width-50 *ngIf="userProfile?.birthDate">
+          <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY"
+            [(ngModel)]="birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.birthDate">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
 
     <ion-item (click)="updateEmail()">
