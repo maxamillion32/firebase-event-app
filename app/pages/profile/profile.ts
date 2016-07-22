@@ -6,13 +6,13 @@ import { LoginPage } from '../login/login';
 
 @Component({
   templateUrl: 'build/pages/profile/profile.html',
-  providers: [ProfileData]
+  providers: [ProfileData, AuthData]
 })
 export class ProfilePage {
   public userProfile: any;
   public birthDate: string;
 
-  constructor(public nav: NavController, public profileData: ProfileData) {
+  constructor(public nav: NavController, public profileData: ProfileData, public authData: AuthData) {
     this.nav = nav;
     this.profileData = profileData;
 
@@ -24,9 +24,9 @@ export class ProfilePage {
   }
 
   logOut(){
-    /*this.authData.logoutUser().then(() => {
+    this.authData.logoutUser().then(() => {
       this.nav.rootNav.setRoot(LoginPage);
-    });*/
+    });
   }
 
   updateName(){
