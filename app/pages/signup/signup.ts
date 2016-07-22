@@ -1,7 +1,8 @@
-import {NavController, Loading} from 'ionic-angular';
+import {NavController, Loading, Alert} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/common';
 import {AuthData} from '../../providers/auth-data/auth-data';
+import {TabsPage} from '../tabs/tabs';
 
 @Component({
   templateUrl: 'build/pages/signup/signup.html',
@@ -23,11 +24,27 @@ export class SignupPage {
 
   signupUser(event){
     event.preventDefault();
-    this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password);
+    this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password).then((newUser) => {
+      this.authData.fireAuth.signInWithEmailAndPassword(this.signupForm.value.email, this.signupForm.value.password).then((authenticatedUser) => {
+        this.authData.userProfile.child(authenticatedUser.uid).set({
+          email: this.signupForm.value.email
+        }).then(() => {
+          this.nav.setRoot(TabsPage);
+        });
+
+      })
+    }, (error) => {
+      var errorMessage: string = error.message;
+        let prompt = Alert.create({
+          message: errorMessage,
+          buttons: [{text: "Ok"}]
+        });
+        this.nav.present(prompt);
+    });
     let loading = Loading.create({
       dismissOnPageChange: true,
     });
     this.nav.present(loading);
   }
-  
+
 }
