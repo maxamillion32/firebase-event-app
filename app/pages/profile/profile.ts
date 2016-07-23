@@ -12,7 +12,8 @@ export class ProfilePage {
   public userProfile: any;
   public birthDate: string;
 
-  constructor(public nav: NavController, public profileData: ProfileData, public authData: AuthData) {
+  constructor(public nav: NavController, public profileData: ProfileData,
+    public authData: AuthData) {
     this.nav = nav;
     this.profileData = profileData;
 
@@ -25,7 +26,7 @@ export class ProfilePage {
 
   logOut(){
     this.authData.logoutUser().then(() => {
-      this.nav.popToRoot();
+      this.nav.rootNav.setRoot(LoginPage);
     });
   }
 
