@@ -25,7 +25,7 @@ export class ProfilePage {
 
   logOut(){
     this.authData.logoutUser().then(() => {
-      this.nav.rootNav.setRoot(LoginPage);
+      this.nav.popToRoot();
     });
   }
 

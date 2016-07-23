@@ -33,9 +33,7 @@ export class LoginPage {
   loginUser(event){
     event.preventDefault();
     this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((authData) => {
-      this.nav.setRoot(TabsPage).then(() => {
-        this.nav.popToRoot();
-      });
+      this.nav.popToRoot();
     }, (error) => {
         let prompt = Alert.create({
           message: error.message,
