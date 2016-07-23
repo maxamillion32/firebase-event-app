@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any;
 
   constructor(platform: Platform) {
 
