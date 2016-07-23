@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController, Loading} from 'ionic-angular';
+import {NavController, Loading, Alert} from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/common';
 import {AuthData} from '../../providers/auth-data/auth-data';
 import {SignupPage} from '../signup/signup';
+import {TabsPage} from '../tabs/tabs';
 import {ResetPasswordPage} from '../reset-password/reset-password';
 
 /*
@@ -31,7 +32,15 @@ export class LoginPage {
 
   loginUser(event){
     event.preventDefault();
-    this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+    this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((authData) => {
+      this.nav.popToRoot();
+    }, (error) => {
+        let prompt = Alert.create({
+          message: error.message,
+          buttons: [{text: "Ok"}]
+        });
+        this.nav.present(prompt);
+    });
     let loading = Loading.create({
       dismissOnPageChange: true,
     });
@@ -40,13 +49,21 @@ export class LoginPage {
 
   loginUserSocial(event, provider) {
     event.preventDefault();
-    this.authData.loginUserSocial(provider);
+    this.authData.loginUserSocial(provider).then((authData) => {
+      this.nav.popToRoot();
+    }, (error) => {
+        let prompt = Alert.create({
+          message: error.message,
+          buttons: [{text: "Ok"}]
+        });
+        this.nav.present(prompt);
+    });
     let loading = Loading.create({
       dismissOnPageChange: true,
     });
     this.nav.present(loading);
   }
-  
+
   goToSignup(){
     this.nav.push(SignupPage);
   }
