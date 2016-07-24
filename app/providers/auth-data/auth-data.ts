@@ -28,13 +28,16 @@ export class AuthData {
     switch(providerName) {
       case "twitter" :
         authProvider = new firebase.auth.TwitterAuthProvider();
-
         break;
       case "facebook" :
         authProvider = new firebase.auth.FacebookAuthProvider();
         break;
       case "google" :
         authProvider = new firebase.auth.GoogleAuthProvider();
+        break;
+      case "github" :
+        authProvider = new firebase.auth.GithubAuthProvider();
+        authProvider.addScope("user");
         break;
     }
     return this.fireAuth.signInWithPopup(authProvider);
