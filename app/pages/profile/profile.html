@@ -19,10 +19,10 @@
           <ion-col width-50>
             Name
           </ion-col>
-          <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
-            {{userProfile?.firstName}} {{userProfile?.lastName}}
+          <ion-col *ngIf="userProfile?.name">
+            {{userProfile?.name}}
           </ion-col>
-          <ion-col class="placeholder-profile" *ngIf="!userProfile?.firstName">
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.name">
             <span>
               Tap here to edit.
             </span>

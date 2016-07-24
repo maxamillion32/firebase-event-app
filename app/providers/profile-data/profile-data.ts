@@ -38,10 +38,9 @@ export class ProfileData {
   * This one takes 2 string parameters, firstName & lastName, it just saves those 2 to the userProfile/uid node
   * for the current user as the firstName & lastName properties.
   */
-  updateName(firstName: string, lastName: string): any {
+  updateName(name: string): any {
     return this.userProfile.child(this.currentUser.uid).update({
-      firstName: firstName,
-      lastName: lastName,
+      name: name
     });
   }
 
