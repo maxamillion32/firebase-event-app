@@ -60,7 +60,9 @@ export class LoginPage {
           });
         }else{
           this.authData.userProfile.child(authData.user.uid).set({
-            email: authData.user.email
+            email: authData.user.email,
+            name: authData.user.displayName,
+            photoUrl: authData.user.photoURL
           });
         }
       });
