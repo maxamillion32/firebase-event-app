@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Storage, LocalStorage} from 'ionic-angular';
 import * as firebase from 'firebase';
 
 @Injectable()
 export class AuthData {
   public fireAuth: any;
   public userProfile: any;
-  local: Storage;
   public user: any;
 
   constructor() {
