@@ -11,7 +11,8 @@
 
 
 <ion-content padding class="event-list">
-  <ion-list>
+  <ion-spinner *ngIf="!eventList"></ion-spinner>
+  <ion-list *ngIf="eventList">
     <ion-item *ngFor="let event of eventList" (click)="goToEventDetail(event)">
       <h2>{{event?.name}}</h2>
       <p>Ticket: <strong>{{event?.price}}</strong></p>
