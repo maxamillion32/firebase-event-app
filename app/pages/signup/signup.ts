@@ -46,5 +46,4 @@ export class SignupPage {
     });
     this.nav.present(loading);
   }
-
 }

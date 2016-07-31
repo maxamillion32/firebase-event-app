@@ -27,6 +27,22 @@
 
   </form>
 
+    <button block class="button-twitter" (click)="loginUserSocial($event, 'twitter')">
+      <ion-icon name="logo-twitter"></ion-icon>Login with Twitter
+    </button>
+
+    <button block class="button-facebook" (click)="loginUserSocial($event, 'facebook')">
+      <ion-icon name="logo-facebook"></ion-icon>Login with Facebook
+    </button>
+
+    <button block class="button-google" (click)="loginUserSocial($event, 'google')">
+      <ion-icon name="logo-google"></ion-icon>Login with Google
+    </button>
+
+    <button block class="button-github" (click)="loginUserSocial($event, 'github')">
+      <ion-icon name="logo-github"></ion-icon>Login with Github
+    </button>
+
     <button block clear (click)="goToSignup()">
       Create a new account
     </button>

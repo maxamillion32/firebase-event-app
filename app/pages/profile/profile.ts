@@ -31,17 +31,12 @@ export class ProfilePage {
 
   updateName(){
     let prompt = Alert.create({
-      message: "Your first name & last name",
+      message: "Your name",
       inputs: [
         {
-          name: 'firstName',
-          placeholder: 'Your first name',
-          value: this.userProfile.firstName
-        },
-        {
-          name: 'lastName',
-          placeholder: 'Your last name',
-          value: this.userProfile.lastName
+          name: 'name',
+          placeholder: 'Your name',
+          value: this.userProfile.name
         },
       ],
       buttons: [
@@ -51,7 +46,7 @@ export class ProfilePage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateName(data.firstName, data.lastName);
+            this.profileData.updateName(data.name);
           }
         }
       ]
