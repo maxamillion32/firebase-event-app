@@ -31,6 +31,24 @@
       </ion-grid>
     </ion-item>
 
+    <ion-item (click)="updateImage()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            Profile Picture
+          </ion-col>
+          <ion-col *ngIf="userProfile?.photoUrl">
+            <img src="{{userProfile?.photoUrl}}" />
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.photoUrl">
+            <span>
+              Tap here to add a picture.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
     <ion-item>
       <ion-label class="dob-label">Date of Birth</ion-label>
       <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY"
