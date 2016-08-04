@@ -28,9 +28,9 @@ export class EventListPage {
     });
   }
 
-  goToEventDetail(eventDetail){
+  goToEventDetail(eventId){
     this.nav.push(EventDetailPage, {
-      eventDetail: eventDetail,
+      eventId: eventId,
     });
   }
 

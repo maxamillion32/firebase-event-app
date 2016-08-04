@@ -15,8 +15,9 @@ export class EventData {
     return this.eventList.push({
       name: eventName,
       date: eventDate,
-      price: eventPrice,
-      cost: eventCost
+      price: eventPrice * 1,
+      cost: eventCost * 1,
+      revenue: eventCost * -1
     }).then( newEvent => {
       this.eventList.child(newEvent.key).child('id').set(newEvent.key);
     });
@@ -24,5 +25,20 @@ export class EventData {
 
   getEventList(): any {
     return this.eventList;
+  }
+
+  getEventDetail(eventId): any {
+    return this.eventList.child(eventId);
+  }
+
+  addGuest(guestName, eventId, eventPrice): any {
+    return this.eventList.child(eventId).child('guestList').push({
+      guestName: guestName
+    }).then(() => {
+      this.eventList.child(eventId).transaction( (event) => {
+        event.revenue += eventPrice;
+        return event;
+      });
+    });
   }
 }
